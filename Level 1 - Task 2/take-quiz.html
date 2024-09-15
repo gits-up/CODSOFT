@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Take Quiz</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Quiz Time!</h1>
+    </header>
+    <div class="container">
+      <div id="quiz">
+        <p class="quiz-question">What is the capital of France?</p>
+        <div class="answer-options">
+          <label><input type="radio" name="answer" value="1" /> Berlin</label>
+          <label><input type="radio" name="answer" value="2" /> Madrid</label>
+          <label><input type="radio" name="answer" value="3" /> Paris</label>
+          <label><input type="radio" name="answer" value="4" /> Rome</label>
+        </div>
+        <button onclick="submitQuiz()">Submit</button>
+      </div>
+
+      <div id="result" class="result-display" style="display: none">
+        <p id="result-message"></p>
+      </div>
+    </div>
+
+    <script>
+      function submitQuiz() {
+        const selectedAnswer = document.querySelector(
+          'input[name="answer"]:checked'
+        );
+        const resultMessage = document.getElementById("result-message");
+
+        if (selectedAnswer) {
+          if (selectedAnswer.value == "3") {
+            resultMessage.textContent =
+              "Correct! The capital of France is Paris.";
+            resultMessage.classList.add("correct-answer");
+          } else {
+            resultMessage.textContent =
+              "Incorrect! The correct answer is Paris.";
+            resultMessage.classList.add("wrong-answer");
+          }
+          document.getElementById("quiz").style.display = "none";
+          document.getElementById("result").style.display = "block";
+        } else {
+          alert("Please select an answer.");
+        }
+      }
+    </script>
+  </body>
+</html>
